@@ -1,5 +1,6 @@
 ﻿from selenium.webdriver.support import expected_conditions as EC
 from locators.locators import Locators
+from data.test_data import TestData
 
 class TestLogin:
     
@@ -9,13 +10,12 @@ class TestLogin:
         wait.until(EC.visibility_of_element_located(Locators.login_title))
         
         # Заполнение формы авторизации
-        driver.find_element(*Locators.fields_email_auth).send_keys("mine228lol@yandex.ru")
-        driver.find_element(*Locators.fields_password_auth).send_keys("Gfhjkm123")
+        driver.find_element(*Locators.fields_email_auth).send_keys(TestData.EXISTING_EMAIL)
+        driver.find_element(*Locators.fields_password_auth).send_keys(TestData.EXISTING_PASSWORD)
         driver.find_element(*Locators.button_login).click()
         
-        # Проверка успешного входа
-        wait.until(EC.visibility_of_element_located(Locators.button_make_the_order))
-        assert driver.find_element(*Locators.button_make_the_order).is_displayed()
+        # Проверка успешного входа с ожиданием
+        assert wait.until(EC.visibility_of_element_located(Locators.button_make_the_order)), "Кнопка 'Оформить заказ' не отображается после входа"
 
     def test_login_via_personal_account_button(self, driver, wait):
         """Вход через кнопку «Личный кабинет»"""
@@ -23,13 +23,12 @@ class TestLogin:
         wait.until(EC.visibility_of_element_located(Locators.login_title))
         
         # Заполнение формы авторизации
-        driver.find_element(*Locators.fields_email_auth).send_keys("mine228lol@yandex.ru")
-        driver.find_element(*Locators.fields_password_auth).send_keys("Gfhjkm123")
+        driver.find_element(*Locators.fields_email_auth).send_keys(TestData.EXISTING_EMAIL)
+        driver.find_element(*Locators.fields_password_auth).send_keys(TestData.EXISTING_PASSWORD)
         driver.find_element(*Locators.button_login).click()
         
-        # Проверка успешного входа
-        wait.until(EC.visibility_of_element_located(Locators.button_make_the_order))
-        assert driver.find_element(*Locators.button_make_the_order).is_displayed()
+        # Проверка успешного входа с ожиданием
+        assert wait.until(EC.visibility_of_element_located(Locators.button_make_the_order)), "Кнопка 'Оформить заказ' не отображается после входа"
 
     def test_login_via_registration_form(self, driver, wait):
         """Вход через кнопку в форме регистрации"""
@@ -41,13 +40,12 @@ class TestLogin:
         
         # Заполнение формы авторизации
         wait.until(EC.visibility_of_element_located(Locators.login_title))
-        driver.find_element(*Locators.fields_email_auth).send_keys("mine228lol@yandex.ru")
-        driver.find_element(*Locators.fields_password_auth).send_keys("Gfhjkm123")
+        driver.find_element(*Locators.fields_email_auth).send_keys(TestData.EXISTING_EMAIL)
+        driver.find_element(*Locators.fields_password_auth).send_keys(TestData.EXISTING_PASSWORD)
         driver.find_element(*Locators.button_login).click()
         
-        # Проверка успешного входа
-        wait.until(EC.visibility_of_element_located(Locators.button_make_the_order))
-        assert driver.find_element(*Locators.button_make_the_order).is_displayed()
+        # Проверка успешного входа с ожиданием
+        assert wait.until(EC.visibility_of_element_located(Locators.button_make_the_order)), "Кнопка 'Оформить заказ' не отображается после входа"
 
     def test_login_via_password_recovery_form(self, driver, wait):
         """Вход через кнопку в форме восстановления пароля"""
@@ -59,10 +57,9 @@ class TestLogin:
         
         # Заполнение формы авторизации
         wait.until(EC.visibility_of_element_located(Locators.login_title))
-        driver.find_element(*Locators.fields_email_auth).send_keys("mine228lol@yandex.ru")
-        driver.find_element(*Locators.fields_password_auth).send_keys("Gfhjkm123")
+        driver.find_element(*Locators.fields_email_auth).send_keys(TestData.EXISTING_EMAIL)
+        driver.find_element(*Locators.fields_password_auth).send_keys(TestData.EXISTING_PASSWORD)
         driver.find_element(*Locators.button_login).click()
         
-        # Проверка успешного входа
-        wait.until(EC.visibility_of_element_located(Locators.button_make_the_order))
-        assert driver.find_element(*Locators.button_make_the_order).is_displayed()
+        # Проверка успешного входа с ожиданием
+        assert wait.until(EC.visibility_of_element_located(Locators.button_make_the_order)), "Кнопка 'Оформить заказ' не отображается после входа"

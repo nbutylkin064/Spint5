@@ -1,4 +1,5 @@
 ﻿class TestData:
+    BASE_URL = "https://stellarburgers.education-services.ru/"
     EXISTING_EMAIL = "mine228lol@yandex.ru"
     EXISTING_PASSWORD = "Gfhjkm123"
     USER_NAME = "Test User"
@@ -27,5 +28,3 @@
         surnames = ['Иванов', 'Петрова', 'Сидоров', 'Смирнова', 'Кузнецов', 'Попова']
         return f"{random.choice(names)} {random.choice(surnames)}"
 
-class Urls:
-    STELLAR_BURGERS_URL = "https://stellarburgers.education-services.ru/"

@@ -28,20 +28,25 @@ class Locators:
     order_history = (By.XPATH, '//a[@href = "/account/order-history"]')            # Раздел "История заказов"
     header_of_page_constructor = (By.XPATH, '//p[text() = "Конструктор"]')         # Кнопка "Конструктор" в шапке сайта
     logo_Stellar_Burgers = (By.XPATH, '//div[@class="AppHeader_header__logo__2D0X2"]')      # Кликабельный логотип Stellar Burgers в шапке сайта
-    button_logout = (By.XPATH, '//button[@type = "button"]')                       # Кнопка "Выйти", логаут
+    button_logout = (By.XPATH, '//button[text()="Выход"]')                         # Кнопка "Выйти", логаут
 
-    # Конструктор
-    buns_block = (By.XPATH, '//span[text()="Булки"]/parent::div')                  # Заголовок раздела "Булки" в меню конструктора
-    sauces_block = (By.XPATH, '//span[text()="Соусы"]/parent::div')                # Заголовок раздела "Соусы" в меню конструктора
-    fillings_block = (By.XPATH, '//span[text()="Начинки"]/parent::div')            # Заголовок раздела "Начинки" в меню конструктора
-    title_assemble_the_burger = (By.XPATH, ".//h1")                                # Надпись, "Соберите бургер"
-
-    current_section = (By.XPATH, "//div[contains(@class, 'tab_tab_type_current')]")  # выбранный раздел помечен tab_tab_type_current
-
-    proverka_sauces = (By.XPATH, './/*[text()="Соус Spicy-X"]')                      # поиск названия соуса Spicy-X
-    proverka_buns = (By.XPATH, './/*[text()="Флюоресцентная булка R2-D3"]')          # поиск названия булки Флюоресцентная булка R2-D3
-    proverka_fillings = (By.XPATH, './/*[text()="Мясо бессмертных моллюсков Protostomia"]')  # поиск названия начинки Мясо бессмертных моллюсков Protostomia
+    # Конструктор - улучшенные локаторы
+    buns_tab = (By.XPATH, '//span[text()="Булки"]/parent::div')                   # Вкладка "Булки"
+    sauces_tab = (By.XPATH, '//span[text()="Соусы"]/parent::div')                 # Вкладка "Соусы"
+    fillings_tab = (By.XPATH, '//span[text()="Начинки"]/parent::div')             # Вкладка "Начинки"
     
-    buns_section_content = (By.XPATH, "//h2[contains(text(), 'Булки')]//ancestor::section")
-    sauces_section_content = (By.XPATH, "//h2[contains(text(), 'Соусы')]//ancestor::section")
-    fillings_section_content = (By.XPATH, "//h2[contains(text(), 'Начинки')]//ancestor::section")
+    # Локаторы для активных вкладок
+    active_tab = (By.XPATH, '//div[contains(@class, "tab_tab_type_current")]')    # Активная вкладка
+    
+    # Локаторы для контента разделов
+    buns_section = (By.XPATH, '//h2[text()="Булки"]')                             # Заголовок раздела "Булки"
+    sauces_section = (By.XPATH, '//h2[text()="Соусы"]')                           # Заголовок раздела "Соусы"
+    fillings_section = (By.XPATH, '//h2[text()="Начинки"]')                       # Заголовок раздела "Начинки"
+    
+    # Альтернативные локаторы для проверки контента
+    buns_content = (By.XPATH, '//section[./h2[text()="Булки"]]')                  # Секция с булками
+    sauces_content = (By.XPATH, '//section[./h2[text()="Соусы"]]')                # Секция с соусами
+    fillings_content = (By.XPATH, '//section[./h2[text()="Начинки"]]')            # Секция с начинками
+
+
+  

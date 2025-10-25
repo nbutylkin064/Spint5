@@ -19,17 +19,8 @@ class TestRegistration:
         driver.find_element(*Locators.fields_password).send_keys(TestData.generate_random_password(8))
         driver.find_element(*Locators.button_submit).click()
         
-        # Проверка успешной регистрации - переход на страницу авторизации ИЛИ на главную (если автоматический вход)
-        try:
-            # Ждем либо страницу входа, либо главную страницу (кнопку "Оформить заказ")
-            wait.until(EC.any_of(
-                EC.visibility_of_element_located(Locators.login_title),
-                EC.visibility_of_element_located(Locators.button_make_the_order)
-            ))
-            # Если хотя бы один из элементов найден, считаем тест пройденным
-            assert True
-        except:
-            assert False, "После регистрации не отобразилась ни страница входа, ни главная страница"
+        # Проверка успешной регистрации - ожидаем переход на страницу входа
+        assert wait.until(EC.visibility_of_element_located(Locators.login_title)), "После регистрации не отобразилась страница входа"
 
     @pytest.mark.parametrize("invalid_password", ["12345", "123", " "])
     def test_registration_with_invalid_password(self, driver, wait, invalid_password):
@@ -46,7 +37,5 @@ class TestRegistration:
         driver.find_element(*Locators.fields_password).send_keys(invalid_password)
         driver.find_element(*Locators.button_submit).click()
         
-        # Проверка отображения ошибки
-        if len(invalid_password.strip()) > 0:
-            wait.until(EC.visibility_of_element_located(Locators.incorrect_password))
-            assert driver.find_element(*Locators.incorrect_password).is_displayed()
+        # Проверка отображения ошибки с ожиданием
+        assert wait.until(EC.visibility_of_element_located(Locators.incorrect_password)), "Сообщение об ошибке пароля не отображается"
